@@ -10830,11 +10830,11 @@
           "targetSchema": {
             "items": {
               "$ref": "#/definitions/pipeline"
-            }
+            },
+            "type": [
+              "array"
+            ]
           },
-          "type": [
-            "array"
-          ],
           "title": "List"
         }
       ],

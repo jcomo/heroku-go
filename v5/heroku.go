@@ -15,13 +15,14 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"github.com/google/go-querystring/query"
 	"io"
 	"net/http"
 	"reflect"
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/google/go-querystring/query"
 )
 
 var _ = time.Second
@@ -3103,8 +3104,9 @@ func (s *Service) PipelineUpdate(ctx context.Context, pipelineID string, o Pipel
 type PipelineListResult []Pipeline
 
 // List existing pipelines.
-func (s *Service) PipelineList(ctx context.Context, lr *ListRange) error {
-	return s.Get(ctx, nil, fmt.Sprintf("/pipelines"), nil, lr)
+func (s *Service) PipelineList(ctx context.Context, lr *ListRange) (PipelineListResult, error) {
+	var pipeline PipelineListResult
+	return pipeline, s.Get(ctx, &pipeline, fmt.Sprintf("/pipelines"), nil, lr)
 }
 
 // Information about latest builds of apps in a pipeline.
